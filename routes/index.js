@@ -24,7 +24,7 @@ router.get("/", function(req, res, next) {
 router.post("/upload/excel", function(req, res) {
     upload(req, res, function(err) {
         if (err) {
-            return res.end("Error uploading file.");
+            console.log(err);
         }
     });
     res.redirect("/");
@@ -135,10 +135,11 @@ router.get("/excel", (req, res, next) => {
                 });
             }
         });
-
-        var xls = json2xls(jsonArray);
-        fs.writeFileSync("data.xlsx", xls, "binary");
-        res.download("data.xlsx");
+        if (jsonArray.length > 0) {
+            var xls = json2xls(jsonArray);
+            fs.writeFileSync("data.xlsx", xls, "binary");
+            res.download("data.xlsx");
+        }
         return;
     }
 
