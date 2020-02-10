@@ -1,0 +1,21 @@
+{
+  "name": "worklog",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon ./bin/www"
+  },
+  "dependencies": {
+    "convert-excel-to-json": "^1.6.1",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "js2excel": "^1.0.1",
+    "json2xls": "^0.1.2",
+    "morgan": "~1.9.1",
+    "multer": "^1.4.2",
+    "xls-to-json": "^0.5.4",
+    "xml2js": "^0.4.23"
+  }
+}

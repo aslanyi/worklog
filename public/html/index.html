@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Worklog Creater</title>
+        <style>
+            textarea {
+                width: 100%;
+                height: 50vh;
+            }
+            button {
+                width: 100%;
+                height: 20vh;
+                font-size: 50px;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <form
+                id="uploadForm"
+                enctype="multipart/form-data"
+                action="/upload/excel"
+                method="post"
+            >
+                <input type="file" name="excel" />
+                <input type="submit" value="Upload Excel" name="submit" />
+            </form>
+            <button onclick="getExcel()">Save MY TIME (THANKS TO TAHA)</button>
+        </div>
+
+        <script>
+            function getExcel() {
+                fetch("/excel")
+                    .then(response => response.blob())
+                    .then(blob => {
+                        var url = window.URL.createObjectURL(blob);
+                        var a = document.createElement("a");
+                        a.href = url;
+                        a.download = "excel.xlsx";
+                        document.body.appendChild(a); // we need to append the element to the dom -> otherwise it will not work in firefox
+                        a.click();
+                        a.remove();
+                    });
+            }
+        </script>
+    </body>
+</html>
